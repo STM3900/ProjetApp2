@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,8 +18,8 @@ export class HomePage {
     this.ref.on('value', resp => {
       this.infos = [];
       this.infos = snapshotToArray(resp);
-    }); 
-  } 
+    });
+  }
 
   edit(key) {
     this.router.navigate(['/edit/'+key]);
@@ -26,18 +27,18 @@ export class HomePage {
 
   async delete(key) {
     const alert = await this.alertController.create({
-      header: 'Confirm!',
-      message: 'Are you sure want to delete this info?',
+      header: 'Confirmation',
+      message: 'Êtes vous sur de vouloir supprimer cette todo ?',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Annuler',
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
             console.log('cancel');
           }
         }, {
-          text: 'Okay',
+          text: 'Oui',
           handler: () => {
             firebase.database().ref('infos/'+key).remove();
           }
